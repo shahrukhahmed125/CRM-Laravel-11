@@ -104,6 +104,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             'destroy' => 'admin.deals.destroy',
         ]
     ]);
+
+    Route::get('/Admin/notifications', [AdminController::class, 'showNotifications'])->name('admin.notifications');
+    Route::get('/Admin/notifications/delete/{notify}', [AdminController::class, 'deleteNotification'])->name('admin.notification.delete');
 });
 
 

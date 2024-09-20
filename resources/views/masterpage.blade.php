@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     @yield('css')
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('assets/images/crm_title.png')}}" />
   </head>
   <body>
     <!-- container-scroller -->

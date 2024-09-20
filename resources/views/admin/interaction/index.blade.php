@@ -93,7 +93,7 @@
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                          </form>
+                            </form>
                         </td>
                         <td>{{Str::title($interaction->user->name)}} ({{$interaction->user->role}})</td>
                     </tr>
