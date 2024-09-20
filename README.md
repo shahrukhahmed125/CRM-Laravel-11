@@ -1,4 +1,4 @@
-CRM Dashboard Project - Laravel
+##CRM Dashboard Project - Laravel
 
 <p align="center">
   <a href="https://laravel.com" target="_blank">
