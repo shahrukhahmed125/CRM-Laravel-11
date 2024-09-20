@@ -246,6 +246,22 @@
                 <span class="menu-title">Pipelines</span>
               </a>
             </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="{{route('support.reports.index')}}">
+                <span class="menu-icon">
+                  <i class="mdi mdi-chart-bar"></i>
+                </span>
+                <span class="menu-title">Reports</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" href="{{route('support.notifications')}}">
+                <span class="menu-icon">
+                  <i class="mdi mdi-bell"></i>
+                </span>
+                <span class="menu-title">Notifications</span>
+              </a>
+            </li>
             @endif
           @endif
         

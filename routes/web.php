@@ -105,8 +105,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ]
     ]);
 
+    // -------- NOTIFICATIONS FUNCTIONS -------- //
+
     Route::get('/Admin/notifications', [AdminController::class, 'showNotifications'])->name('admin.notifications');
     Route::get('/Admin/notifications/delete/{notify}', [AdminController::class, 'deleteNotification'])->name('admin.notification.delete');
+
+    // -------- REPORTS FUNCTIONS -------- //
 
     Route::get('Admin/reports/index', [ReportController::class, 'index'])->name('admin.reports.index');
     Route::get('Admin/reports/sales-performance', [ReportController::class, 'salesPerformance'])->name('admin.reports.sales-performance');
@@ -124,8 +128,8 @@ Route::middleware(['auth', 'role:sales'])->group(function () {
     Route::get('/SalesDashboard', [SalesController::class, 'index'])->name('sales.dashboard');
     Route::get('/SalesChangePassword', [SalesController::class, 'changePassword'])->name('sales.changePassword');
     Route::post('/SalesChangePasswordPost', [SalesController::class, 'changePasswordPost'])->name('sales.changePasswordPost');
-    Route::get('/SalesProfile', [AdminController::class, 'profile'])->name('sales.profile');
-    Route::Post('/SalesProfilePost', [AdminController::class, 'profilePost'])->name('sales.profilePost');
+    Route::get('/SalesProfile', [SalesController::class, 'profile'])->name('sales.profile');
+    Route::Post('/SalesProfilePost', [SalesController::class, 'profilePost'])->name('sales.profilePost');
     Route::get('/SalesLogout', [AuthController::class, 'logout'])->name('sales.logout');
 
     // -------- CUSTOMER CRUD AND SEARCH FUNCTIONS -------- //
@@ -179,8 +183,12 @@ Route::middleware(['auth', 'role:sales'])->group(function () {
         ]
     ])->except(['destroy']);
 
+    // -------- NOTIFICATIONS FUNCTIONS -------- //
+
     Route::get('/Sales/notifications', [SalesController::class, 'showNotifications'])->name('sales.notifications');
     Route::get('/Sales/notifications/delete/{notify}', [SalesController::class, 'deleteNotification'])->name('sales.notification.delete');
+
+    // -------- REPORTS FUNCTIONS -------- //
 
     Route::get('Sales/reports/index', [ReportController::class, 'index'])->name('sales.reports.index');
     Route::get('Sales/reports/sales-performance', [ReportController::class, 'salesPerformance'])->name('sales.reports.sales-performance');
@@ -199,6 +207,8 @@ Route::middleware(['auth', 'role:support'])->group(function () {
     Route::get('/SupportDashboard', [SupportController::class, 'index'])->name('support.dashboard');
     Route::get('/SupportChangePassword', [SupportController::class, 'changePassword'])->name('suport.changePassword');
     Route::post('/SupportChangePasswordPost', [SupportController::class, 'changePasswordPost'])->name('suport.changePasswordPost');
+    Route::get('/SupportProfile', [SupportController::class, 'profile'])->name('support.profile');
+    Route::Post('/SupportProfilePost', [SupportController::class, 'profilePost'])->name('support.profilePost');
     Route::get('/SupportLogout', [AuthController::class, 'logout'])->name('support.logout');
 
     // -------- CUSTOMERS CRUD AND SEARCH FUNCTIONS -------- //
@@ -235,4 +245,15 @@ Route::middleware(['auth', 'role:support'])->group(function () {
             'destroy' => 'support.pipelines.destroy', // This will not be accessible for support
         ]
     ])->only(['index', 'show']);
+
+    // -------- NOTIFICATIONS FUNCTIONS -------- //
+
+    Route::get('/Support/notifications', [SupportController::class, 'showNotifications'])->name('support.notifications');
+    Route::get('/Support/notifications/delete/{notify}', [SupportController::class, 'deleteNotification'])->name('support.notification.delete');
+
+    // -------- REPORTS FUNCTIONS -------- //
+
+    Route::get('Support/reports/index', [ReportController::class, 'index'])->name('support.reports.index');
+    Route::get('Support/reports/sales-performance', [ReportController::class, 'salesPerformance'])->name('support.reports.sales-performance');
+    Route::get('Support/reports/customer-interactions', [ReportController::class, 'customerInteractions'])->name('support.reports.customer-interactions');
 });

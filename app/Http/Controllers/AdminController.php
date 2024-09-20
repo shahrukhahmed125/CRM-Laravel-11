@@ -237,10 +237,18 @@ class AdminController extends Controller
 
     public function deleteNotification($notify)
     {
-        $data = Notification::where('id', $notify)->delete();
+        $data = trim($notify);
+        $data = Notification::find($notify);
+
         if($data)
         {
+            $data->delete();
             return redirect()->back()->with('msg', 'Notification deleted successfully.');
+        }
+        else
+        {
+            return redirect()->back()->with('msg', 'Error.');
+
         }
 
 

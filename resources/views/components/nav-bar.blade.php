@@ -41,7 +41,7 @@
                   <h6 class="p-3 mb-0">Options</h6>
                   <div class="dropdown-divider"></div>
                   @if (Auth::user()->role == 'support')
-                  <a class="dropdown-item preview-item" href="#">
+                  <a class="dropdown-item preview-item" href="{{route('support.profile')}}">
                   @elseif (Auth::user()->role == 'admin')
                   <a class="dropdown-item preview-item" href="{{route('admin.profile')}}">
                   @elseif (Auth::user()->role == 'sales')

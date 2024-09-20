@@ -1,5 +1,5 @@
 @extends('masterpage')
-@section('title', 'Sales Reports')
+@section('title', 'Support Reports')
 @section('css')
 
 @endsection
@@ -32,7 +32,7 @@
                     <h4 class="card-title">Line chart</h4>
                     <canvas id="lineChart" style="height:250px"></canvas>
                     </div>
-                    <a href="{{route('sales.reports.customer-interactions')}}" class="btn btn-info btn-lg">Customers Interactions</a>
+                    <a href="{{route('support.reports.customer-interactions')}}" class="btn btn-info btn-lg">Customers Interactions</a>
                 </div>
                 </div>
                 <div class="col-lg-4 grid-margin stretch-card">
@@ -58,45 +58,6 @@
                               </tbody>
                             </table>
                           </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-8 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                    <h4 class="card-title">Bar chart</h4>
-                    <canvas id="barChart" style="height:230px"></canvas>
-                    </div>
-                    <a href="{{route('sales.reports.sales-performance')}}" class="btn btn-info btn-lg">Sales Performance</a>
-                </div>
-                </div>
-                <div class="col-lg-4 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Details</h4>
-                        <div class="table-responsive">
-                            <table class="table">
-                              <thead>
-                                <tr>
-                                  <th> Salesperson </th>
-                                  <th> Total Deals </th>
-                                  <th> Total Value </th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                @foreach ($sales   as $sale)
-                                    <tr>
-                                    <td>{{Str::title($sale->user->name)}}</td>
-                                    <td> {{ $sale->total_deals}} </td>
-                                    <td> {{ $sale->total_value }} </td>
-                                    </tr>
-                                    
-                                @endforeach
-                              </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
                 </div>
@@ -156,37 +117,5 @@
     });
 </script>
 
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Prepare data from Blade view
-        const salesData = @json($salesData);
-
-        const labels = salesData.map(item => item.date);
-        const totalValues = salesData.map(item => item.total_value);
-
-        const ctx = document.getElementById('barChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Sales Performance',
-                    data: totalValues,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    });
-</script>
 <!-- End custom js for this page -->
 @endsection

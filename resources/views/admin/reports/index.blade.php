@@ -1,5 +1,5 @@
 @extends('masterpage')
-@section('title', 'Reports')
+@section('title', 'Admin Reports')
 @section('css')
 
 @endsection

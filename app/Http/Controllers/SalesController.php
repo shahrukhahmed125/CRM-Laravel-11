@@ -162,7 +162,7 @@ class SalesController extends Controller
     public function profile()
     {
         $data = Auth::user();
-        return view('admin.adminProfile',compact('data'));
+        return view('sales.salesProfile',compact('data'));
     }
 
     public function profilePost(Request $request)
@@ -174,7 +174,7 @@ class SalesController extends Controller
         $data->email = $request->email;
         $data->save();
 
-        return redirect()->route('admin.dashboard')->with('msg', 'Profile changed successfully!');
+        return redirect()->route('sales.dashboard')->with('msg', 'Profile changed successfully!');
 
     }
 
@@ -191,7 +191,7 @@ class SalesController extends Controller
             }
         }
 
-        return view('admin.adminNotification', compact('notifications'));
+        return view('sales.salesNotification', compact('notifications'));
     }
 
     public function deleteNotification($notify)
@@ -200,6 +200,11 @@ class SalesController extends Controller
         if($data)
         {
             return redirect()->back()->with('msg', 'Notification deleted successfully.');
+        }
+        else
+        {
+            return redirect()->back()->with('msg', 'Error.');
+
         }
 
 
