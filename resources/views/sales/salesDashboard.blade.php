@@ -22,7 +22,7 @@
               </div>
               <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
                 <span>
-                  <a href="{{route('admin.logout')}}" class="btn btn-outline-light btn-rounded get-started-btn">Log Out</a>
+                  <a href="{{route('sales.logout')}}" class="btn btn-outline-light btn-rounded get-started-btn">Log Out</a>
                 </span>
               </div>
             </div>
@@ -95,7 +95,7 @@
           <div class="card-body">
             <div class="d-flex flex-row justify-content-between">
               <h4 class="card-title">Notifications</h4>
-              <a href="{{route('admin.notifications')}}" class="text-muted mb-1 small">View all</a>
+              <a href="{{route('sales.notifications')}}" class="text-muted mb-1 small">View all</a>
             </div>
             <div class="preview-list">
               @foreach ($notifications as $data)
@@ -178,7 +178,7 @@
             <h4 class="card-title">Line chart</h4>
             <canvas id="lineChart" style="height:250px"></canvas>
             </div>
-            <a href="{{route('admin.reports.customer-interactions')}}" class="btn btn-info btn-lg">Customers Interactions</a>
+            <a href="{{route('sales.reports.customer-interactions')}}" class="btn btn-info btn-lg">Customers Interactions</a>
         </div>
       </div>
       <div class="col-md-12 col-xl-4 grid-margin stretch-card">

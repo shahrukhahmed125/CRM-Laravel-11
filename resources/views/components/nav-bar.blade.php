@@ -45,7 +45,7 @@
                   @elseif (Auth::user()->role == 'admin')
                   <a class="dropdown-item preview-item" href="{{route('admin.profile')}}">
                   @elseif (Auth::user()->role == 'sales')
-                  <a class="dropdown-item preview-item" href="#">
+                  <a class="dropdown-item preview-item" href="{{route('sales.profile')}}">
                   @endif
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">

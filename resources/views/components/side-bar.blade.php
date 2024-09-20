@@ -205,6 +205,22 @@
                   <span class="menu-title">Add Deals</span>
                 </a>
               </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="{{route('sales.reports.index')}}">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-chart-bar"></i>
+                  </span>
+                  <span class="menu-title">Reports</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="{{route('sales.notifications')}}">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-bell"></i>
+                  </span>
+                  <span class="menu-title">Notifications</span>
+                </a>
+              </li>
             @elseif (Auth::user()->role == 'support')
             <li class="nav-item menu-items">
               <a class="nav-link" href="{{route('support.interactions.index')}}">

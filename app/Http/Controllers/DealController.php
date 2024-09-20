@@ -15,12 +15,13 @@ class DealController extends Controller
      */
     public function index()
     {
-        $deals = Deal::with(['customer', 'pipeline'])->get();
         $user = Auth::user();
-
+        
         if ($user->hasRole('admin')) {
+            $deals = Deal::where('user_id', 1)->with(['customer', 'pipeline'])->get();
             return view('admin.deals.index', compact('deals'));
         } elseif ($user->hasRole('sales')) {
+            $deals = Deal::where('user_id', 2)->with(['customer', 'pipeline'])->get();
             return view('sales.deals.index', compact('deals'));
         } else {
             abort(403);

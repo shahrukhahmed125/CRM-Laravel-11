@@ -67,8 +67,8 @@ class SalesController extends Controller
         ->get();
 
         $customers = DB::table('customers')->count();
-        $deals = DB::table('deals')->count();
-        $total = DB::table('deals')->sum('deal_value');
+        $deals = DB::table('deals')->where('user_id', 2)->count();
+        $total = DB::table('deals')->where('user_id', 2)->sum('deal_value');
 
         return view('sales.salesDashboard', compact('user', 'customer', 'interaction', 'notifications', 'dates', 'counts','interactions', 'customers','deals','total'));
       
@@ -156,6 +156,52 @@ class SalesController extends Controller
         $data = Customer::search($query)->get();
 
         return view('sales.salesCustomerSearch', compact('data'));
+
+    }
+
+    public function profile()
+    {
+        $data = Auth::user();
+        return view('admin.adminProfile',compact('data'));
+    }
+
+    public function profilePost(Request $request)
+    {
+        $id = Auth::user()->id;
+        $data = User::findOrfail($id);
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->save();
+
+        return redirect()->route('admin.dashboard')->with('msg', 'Profile changed successfully!');
+
+    }
+
+    public function showNotifications()
+    {
+        $notifications = Notification::where('notifiable_id', 2)->orderBy('created_at', 'desc')->get();
+
+        foreach ($notifications as $notification) {
+
+            $notification->decoded_data = json_decode($notification->data, true) ?: [];
+            
+            if (isset($notification->decoded_data['user_id'])) {
+                $notification->user = User::find($notification->decoded_data['user_id']);
+            }
+        }
+
+        return view('admin.adminNotification', compact('notifications'));
+    }
+
+    public function deleteNotification($notify)
+    {
+        $data = Notification::where('id', $notify)->delete();
+        if($data)
+        {
+            return redirect()->back()->with('msg', 'Notification deleted successfully.');
+        }
+
 
     }
 }

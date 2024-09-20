@@ -107,6 +107,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/Admin/notifications', [AdminController::class, 'showNotifications'])->name('admin.notifications');
     Route::get('/Admin/notifications/delete/{notify}', [AdminController::class, 'deleteNotification'])->name('admin.notification.delete');
+
+    Route::get('Admin/reports/index', [ReportController::class, 'index'])->name('admin.reports.index');
+    Route::get('Admin/reports/sales-performance', [ReportController::class, 'salesPerformance'])->name('admin.reports.sales-performance');
+    Route::get('Admin/reports/customer-interactions', [ReportController::class, 'customerInteractions'])->name('admin.reports.customer-interactions');
 });
 
 
@@ -120,6 +124,8 @@ Route::middleware(['auth', 'role:sales'])->group(function () {
     Route::get('/SalesDashboard', [SalesController::class, 'index'])->name('sales.dashboard');
     Route::get('/SalesChangePassword', [SalesController::class, 'changePassword'])->name('sales.changePassword');
     Route::post('/SalesChangePasswordPost', [SalesController::class, 'changePasswordPost'])->name('sales.changePasswordPost');
+    Route::get('/SalesProfile', [AdminController::class, 'profile'])->name('sales.profile');
+    Route::Post('/SalesProfilePost', [AdminController::class, 'profilePost'])->name('sales.profilePost');
     Route::get('/SalesLogout', [AuthController::class, 'logout'])->name('sales.logout');
 
     // -------- CUSTOMER CRUD AND SEARCH FUNCTIONS -------- //
@@ -172,6 +178,14 @@ Route::middleware(['auth', 'role:sales'])->group(function () {
             'destroy' => 'sales.deals.destroy', // This will not be accessible for sales
         ]
     ])->except(['destroy']);
+
+    Route::get('/Sales/notifications', [SalesController::class, 'showNotifications'])->name('sales.notifications');
+    Route::get('/Sales/notifications/delete/{notify}', [SalesController::class, 'deleteNotification'])->name('sales.notification.delete');
+
+    Route::get('Sales/reports/index', [ReportController::class, 'index'])->name('sales.reports.index');
+    Route::get('Sales/reports/sales-performance', [ReportController::class, 'salesPerformance'])->name('sales.reports.sales-performance');
+    Route::get('Sales/reports/customer-interactions', [ReportController::class, 'customerInteractions'])->name('sales.reports.customer-interactions');
+
 });
 
 
@@ -221,11 +235,4 @@ Route::middleware(['auth', 'role:support'])->group(function () {
             'destroy' => 'support.pipelines.destroy', // This will not be accessible for support
         ]
     ])->only(['index', 'show']);
-});
-
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('admin/reports/index', [ReportController::class, 'index'])->name('admin.reports.index');
-    Route::get('admin/reports/sales-performance', [ReportController::class, 'salesPerformance'])->name('admin.reports.sales-performance');
-    Route::get('admin/reports/customer-interactions', [ReportController::class, 'customerInteractions'])->name('admin.reports.customer-interactions');
 });
